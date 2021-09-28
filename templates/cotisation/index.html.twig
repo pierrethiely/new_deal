@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des cotisations{% endblock %}
+
+{% block body %}
+    <h1>Liste des cotisations</h1>
+
+    <table class="table">
+        {% if cotisations %}
+        <thead>
+            <tr>
+                <th>Année</th>
+                <th>Mois</th>
+                <th>PMSS</th>
+                <th>SMIC</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        {% endif %}
+        <tbody>
+        {% for cotisation in cotisations %}
+            <tr>
+                <td>{{ cotisation.year }}</td>
+                <td>{{ cotisation.month }}</td>
+                <td>{{ cotisation.pmssAmount }}</td>
+                <td>{{ cotisation.smicAmount }}</td>
+                <td>
+                    <a href="{{ path('cotisation_show', {'id': cotisation.id}) }}">Voir</a>
+                    <a href="{{ path('cotisation_edit', {'id': cotisation.id}) }}">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucune cotisation trouvée.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('cotisation_new') }}">Ajouter une cotisation</a>
+{% endblock %}

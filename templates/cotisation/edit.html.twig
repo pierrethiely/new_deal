@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une cotisation{% endblock %}
+
+{% block body %}
+    <h1>Modifier une cotisation</h1>
+
+    {{ include('cotisation/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+    <a href="{{ path('cotisation_index') }}">Retour à la liste</a>
+
+    {{ include('cotisation/_delete_form.html.twig') }}
+{% endblock %}
