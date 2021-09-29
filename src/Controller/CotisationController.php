@@ -91,4 +91,15 @@ class CotisationController extends AbstractController
 
         return $this->redirectToRoute('cotisation_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    /**
+     * @Route("/cotisation/{year}/{month}", name="cotisation_monthly", methods={"GET"})
+     */
+    public function showMonthlyCotisations(Cotisation $cotisation): Response
+    {
+        return $this->render('cotisation/cotisation.html.twig', [
+            'cotisation' => $cotisation,
+        ]);
+        
+    }
 }

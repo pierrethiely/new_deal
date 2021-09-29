@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Taux de cotisation en {{ cotisation.month }}/{{ cotisation.year }} {% endblock %}
+
+{% block body %}
+<div class="container-fluid text-center offset-3 col-6">
+    <h1>Taux de cotisation en {{ cotisation.month }}/{{ cotisation.year }}</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">PMSS</th>
+                <th scope="col" class="text-center">SMIC</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">{{ cotisation.pmssAmount }} €</td>
+                <td class="text-center">{{ cotisation.smicAmount }} €</td>
+            </tr>           
+        </tbody>
+     </table>
+    <a href="{{ path('cotisation_index') }}">Retour à la liste</a>
+</div>
+{% endblock %}

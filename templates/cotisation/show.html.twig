@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cotisation{% endblock %}
+{% block title %}Cotisation n°{{ cotisation.id }}{% endblock %}
 
 {% block body %}
-<div class="container-fluid">
-    <h1>Cotisation</h1>
+<div class="container-fluid text-center offset-3 col-6">
+    <h1>Cotisation n°{{ cotisation.id }}</h1>
     <table class="table">
         <tbody>
             <tr>
