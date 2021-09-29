@@ -3,39 +3,39 @@
 {% block title %}Liste des cotisations{% endblock %}
 
 {% block body %}
-    <h1>Liste des cotisations</h1>
-
-    <table class="table">
-        {% if cotisations %}
-        <thead>
-            <tr>
-                <th>Année</th>
-                <th>Mois</th>
-                <th>PMSS</th>
-                <th>SMIC</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        {% endif %}
-        <tbody>
-        {% for cotisation in cotisations %}
-            <tr>
-                <td>{{ cotisation.year }}</td>
-                <td>{{ cotisation.month }}</td>
-                <td>{{ cotisation.pmssAmount }}</td>
-                <td>{{ cotisation.smicAmount }}</td>
-                <td>
-                    <a href="{{ path('cotisation_show', {'id': cotisation.id}) }}">Voir</a>
-                    <a href="{{ path('cotisation_edit', {'id': cotisation.id}) }}">Editer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">Aucune cotisation trouvée.</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('cotisation_new') }}">Ajouter une cotisation</a>
+    <div class="container-fluid">
+        <h1>Liste des cotisations</h1>
+        <a href="{{ path('cotisation_new') }}"><button type="button" class="btn btn-outline-dark">Ajouter une cotisation</button></a>
+    {% if cotisations %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col" class="text-center">Année</th>
+                    <th scope="col" class="text-center">Mois</th>
+                    <th scope="col" class="text-center">PMSS</th>
+                    <th scope="col" class="text-center">SMIC</th>
+                    <th scope="col" class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for cotisation in cotisations %}
+                <tr>
+                    <th scope="row" class="text-center">{{ cotisation.id }}</td>
+                    <td class="text-center">{{ cotisation.year }}</td>
+                    <td class="text-center">{{ cotisation.month }}</td>
+                    <td class="text-center">{{ cotisation.pmssAmount }} €</td>
+                    <td class="text-center">{{ cotisation.smicAmount }} €</td>
+                    <td class="text-center">
+                        <a href="{{ path('cotisation_show', {'id': cotisation.id}) }}"><button type="button" class="btn btn-outline-success">Voir</button></a>
+                        <a href="{{ path('cotisation_edit', {'id': cotisation.id}) }}"><button type="button" class="btn btn-outline-primary">Editer</button></a>
+                    </td>
+                </tr>
+            {% endfor %}            
+            </tbody>
+            {% else %}
+            <div class="alert alert-danger" role="alert">Aucune cotisation trouvée.</div>
+        </table>    
+    {% endif %}
+</div>
 {% endblock %}

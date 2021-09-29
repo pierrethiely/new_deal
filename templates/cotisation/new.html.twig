@@ -3,9 +3,11 @@
 {% block title %}Ajouter une cotisation{% endblock %}
 
 {% block body %}
+<div class="container-fluid">
     <h1>Ajouter une cotisation</h1>
 
     {{ include('cotisation/_form.html.twig') }}
 
     <a href="{{ path('cotisation_index') }}">Retour à la liste</a>
+</div>
 {% endblock %}

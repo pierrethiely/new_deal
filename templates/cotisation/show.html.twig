@@ -3,28 +3,28 @@
 {% block title %}Cotisation{% endblock %}
 
 {% block body %}
+<div class="container-fluid">
     <h1>Cotisation</h1>
-
     <table class="table">
         <tbody>
             <tr>
-                <th>Année</th>
-                <th>Mois</th>
-                <th>PMSS</th>
-                <th>SMIC</th>
+                <th scope="col" class="text-center">Année</th>
+                <th scope="col" class="text-center">Mois</th>
+                <th scope="col" class="text-center">PMSS</th>
+                <th scope="col" class="text-center">SMIC</th>
+                <th scope="col" class="text-center">Actions</th>
             </tr>
             <tr>
-                <td>{{ cotisation.year }}</td>
-                <td>{{ cotisation.month }}</td>
-                <td>{{ cotisation.pmssAmount }}</td>
-                <td>{{ cotisation.smicAmount }}</td>
+                <td class="text-center">{{ cotisation.year }}</td>
+                <td class="text-center">{{ cotisation.month }}</td>
+                <td class="text-center">{{ cotisation.pmssAmount }} €</td>
+                <td class="text-center">{{ cotisation.smicAmount }} €</td><td class="text-center">
+                    <a href="{{ path('cotisation_edit', {'id': cotisation.id}) }}"><button type="button" class="btn btn-outline-primary">Modifier</button></a>
+                    {{ include('cotisation/_delete_form.html.twig') }}
+                </td>
             </tr>
         </tbody>
     </table>
-
     <a href="{{ path('cotisation_index') }}">Retour à la liste</a>
-
-    <a href="{{ path('cotisation_edit', {'id': cotisation.id}) }}">Modifier</a>
-
-    {{ include('cotisation/_delete_form.html.twig') }}
+</div>
 {% endblock %}
