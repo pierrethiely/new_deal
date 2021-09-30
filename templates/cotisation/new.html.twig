@@ -5,9 +5,8 @@
 {% block body %}
 <div class="container-fluid text-center offset-3 col-6">
     <h1>Ajouter une cotisation</h1>
-
     {{ include('cotisation/_form.html.twig') }}
-
+    <br>
     <a href="{{ path('cotisation_index') }}">Retour à la liste</a>
 </div>
 {% endblock %}
