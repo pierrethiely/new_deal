@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Cotisation;
 use App\Form\CotisationType;
+use App\Form\NewCotisationType;
 use App\Repository\CotisationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ class CotisationController extends AbstractController
     public function new(Request $request): Response
     {
         $cotisation = new Cotisation();
-        $form = $this->createForm(CotisationType::class, $cotisation);
+        $form = $this->createForm(NewCotisationType::class, $cotisation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

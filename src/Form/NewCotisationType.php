@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Length;
 
-class CotisationType extends AbstractType
+class NewCotisationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -19,6 +19,7 @@ class CotisationType extends AbstractType
             ->add('year', ChoiceType::class, [
                 'help' => 'L\'année auquel vous souhaitez appliquer ces montants.',
                 'choices' => array_combine(range(2000, 2050), range(2000, 2050)),
+                'data' => date('Y'),
                 'label' => 'Année',
                 'constraints' => [
                     new Range([
@@ -34,6 +35,7 @@ class CotisationType extends AbstractType
             ->add('month', ChoiceType::class, [
                 'help' => 'Le mois auquel vous souhaitez appliquer ces montants.',
                 'choices' => array_combine(range(1, 12), range(1, 12)),
+                'data' => date('n'),
                 'label' => 'Mois',
                 'constraints' => [
                     new Range([
