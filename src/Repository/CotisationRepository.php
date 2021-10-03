@@ -48,20 +48,4 @@ class CotisationRepository extends ServiceEntityRepository
     }
     */
 
-    public function findPmssByYear($year)
-    {
-        $subRequest = $this->createQueryBuilder('m')
-                            ->select('MIN(m.month)')
-                            ->andWhere('m.year = ?year')
-                            ->getDQL();
-
-        return $this->createQueryBuilder('c')
-            ->select('c.pmss_amount')
-            ->andWhere('c.year = ?year')
-            ->andWhere('c.month = (' . $subRequest .')')
-            ->setParameter('year', $year)
-            ->getQuery()
-            /*->getResult()*/
-        ;
-    }
 }

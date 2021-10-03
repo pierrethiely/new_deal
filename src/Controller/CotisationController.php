@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Cotisation;
 use App\Form\CotisationType;
 use App\Form\NewCotisationType;
+use App\Service\PayslipService;
 use App\Repository\CotisationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,8 +20,9 @@ class CotisationController extends AbstractController
     /**
      * @Route("/", name="cotisation_index", methods={"GET"})
      */
-    public function index(CotisationRepository $cotisationRepository): Response
+    public function index(CotisationRepository $cotisationRepository, PayslipService $payslipService): Response
     {
+        $payslipService->getPmssByYear();
         return $this->render('cotisation/index.html.twig', [
             'cotisations' => $cotisationRepository->findAll(),
         ]);
@@ -52,8 +54,9 @@ class CotisationController extends AbstractController
     /**
      * @Route("/{id}", name="cotisation_show", methods={"GET"})
      */
-    public function show(Cotisation $cotisation): Response
+    public function show(Cotisation $cotisation, PayslipService $payslipService): Response
     {
+        $payslipService->getPmssByYear();
         return $this->render('cotisation/show.html.twig', [
             'cotisation' => $cotisation,
         ]);
@@ -62,8 +65,9 @@ class CotisationController extends AbstractController
     /**
      * @Route("/{id}/edit", name="cotisation_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Cotisation $cotisation): Response
+    public function edit(Request $request, Cotisation $cotisation, PayslipService $payslipService): Response
     {
+        $payslipService->getPmssByYear();
         $form = $this->createForm(CotisationType::class, $cotisation);
         $form->handleRequest($request);
 
@@ -96,8 +100,9 @@ class CotisationController extends AbstractController
     /**
      * @Route("/cotisation/{year}/{month}", name="cotisation_monthly", methods={"GET"})
      */
-    public function showMonthlyCotisations(Cotisation $cotisation): Response
+    public function showMonthlyCotisations(Cotisation $cotisation, PayslipService $payslipService): Response
     {
+        $payslipService->getPmssByYear();
         return $this->render('cotisation/cotisation.html.twig', [
             'cotisation' => $cotisation,
         ]);
